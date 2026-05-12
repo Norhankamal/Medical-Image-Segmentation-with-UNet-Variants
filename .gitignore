@@ -1,0 +1,26 @@
+# Data (too large for GitHub)
+data/raw/
+data/processed/
+*.zip
+*.tar.gz
+
+# ── Model Weights
+checkpoints/*.pth
+checkpoints/*.pt
+*.pth
+*.pt
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+.env
+venv/
+.venv/
+
+# Jupyter
+.ipynb_checkpoints/
+
+# OS
+.DS_Store
+Thumbs.db
