@@ -2,7 +2,8 @@
 # Raw data on Google Drive - mounted in Colab
 # All images converted to RGB by Student A preprocessing
 data:
-  raw_dir     : /content/drive/MyDrive/raw/stage1_train/
+  raw_dir          : /content/drive/MyDrive/Medical_Segmentation_Data/raw/stage1_train/
+  preprocessed_dir : /content/drive/MyDrive/Medical_Segmentation_Data/preprocessed
   img_size    : 256
   num_workers : 2
   val_split   : 0.2
