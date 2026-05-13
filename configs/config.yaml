@@ -41,4 +41,3 @@ paths:
 # Evaluation
 evaluation:
   threshold : 0.5
->>>>>>> c6ce3e8 (Add config.yaml with all training hyperparameters and confirmed data path)
