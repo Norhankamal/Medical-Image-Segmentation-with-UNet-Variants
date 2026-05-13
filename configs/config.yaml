@@ -1,1 +1,47 @@
+<<<<<<< HEAD
 start
+=======
+# Data Settings
+# Raw data on Google Drive - mounted in Colab
+# All images converted to RGB by Student A preprocessing
+data:
+  raw_dir     : /content/drive/MyDrive/raw/stage1_train/
+  img_size    : 256
+  num_workers : 2
+  val_split   : 0.2
+  seed        : 42
+
+# Model Settings
+# in_channels=3  — Student A converts all RGBA images to RGB
+# out_channels=1 — binary segmentation (nucleus vs background)
+model:
+  in_channels  : 3
+  out_channels : 1
+  name         : unet
+
+# Training Settings
+training:
+  epochs      : 50
+  batch_size  : 8
+  lr          : 0.0001
+  lr_patience : 5
+  lr_factor   : 0.5
+
+# Loss Settings
+# Combined loss = BCE + Dice
+# Dice handles class imbalance (13.9% foreground / 86.1% background)
+loss:
+  bce_weight  : 1.0
+  dice_weight : 1.0
+
+# Paths
+paths:
+  checkpoint_dir : checkpoints/
+  best_model     : checkpoints/best_model.pth
+  figures_dir    : reports/figures/
+  metrics_file   : reports/figures/metrics.txt
+
+# Evaluation
+evaluation:
+  threshold : 0.5
+>>>>>>> c6ce3e8 (Add config.yaml with all training hyperparameters and confirmed data path)
