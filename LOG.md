@@ -34,18 +34,22 @@
 
 ---
 
-## Day 2 — May 12, 2025 | EDA + Preprocessing + Augmentation
+## Day 2 — May 13, 2025 | EDA + Preprocessing + Augmentation
 
 **Responsible:** Student A  
 **Commits:** `Add EDA notebook`, `Add preprocessing pipeline`, `Add augmentation pipeline`, `Add NucleiDataset class`, `Update LOG.md`
 
-### ✅ Completed
+### Completed
 
 #### Exploratory Data Analysis (EDA)
 - Scanned all 670 training samples for image statistics
-- Found image sizes vary widely — from 256×256 up to 1040×1040
-- Found 3 channel types: RGB (3ch), Grayscale (1ch), RGBA (4ch)
-- Computed nucleus count per image: mean ≈ X, min = X, max = X
+- Found image sizes vary widely — 9 distinct sizes from 256×256 up to 1388×1040
+- Most common size: 256×256 (334 images, 49.9%)
+- Found ALL 670 images are RGBA (4ch) — no grayscale or pure RGB images
+- Computed nucleus count per image: mean=44.0 ±48.0, median=27, min=1, max=375
+- Identified 35 high-density images (≥136 nuclei, top 5%) for separate evaluation
+- Mask coverage: mean foreground = 13.9% ±11.1% — class imbalance confirmed
+- Checked 29,461 instance masks: 0 non-binary, 0 empty, 0 size mismatches
 - Visualized 4 sample images with their ground truth masks and overlays
 - Saved all EDA figures to `reports/figures/`
 
@@ -65,38 +69,47 @@
 #### Dataset Class
 - Implemented `NucleiDataset` (PyTorch Dataset class) in `src/dataset.py`
 - Implemented `get_dataloaders()` using config.yaml
-- Train/Val split: 80% / 20% (seed=42 for reproducibility)
-- Confirmed: Train = 536 samples, Val = 134 samples
+- Train/Val/Test split: 70% / 15% / 15% (stratified by nucleus count quartile, seed=42)
+- Confirmed: Train = 469, Val = 100, Test = 101 samples
+- Split IDs saved to `data/splits/` — loaded by all downstream notebooks
 - Verified DataLoader output shapes: image (8, 3, 256, 256), mask (8, 1, 256, 256)
 
-### 🔑 Key Decisions
+### Key Decisions
 | Decision | Reason |
 |----------|--------|
 | Resize to 256×256 | Balances spatial detail and GPU memory usage |
-| Convert all images to RGB | Handles grayscale/RGBA inconsistency uniformly |
+| Convert RGBA → RGB | All 670 images are RGBA — .convert("RGB") drops alpha channel cleanly |
 | Normalize with ImageNet mean/std | Compatible with potential transfer learning |
 | Threshold mask at > 127 | Handles non-binary pixel artifacts in some masks |
 | Merge instance masks → binary | Task is binary segmentation (nucleus vs background) |
 | ElasticTransform p=0.3 | Mimics realistic biological tissue deformation |
 | Seed = 42 | Ensures reproducible train/val split across runs |
 | `albumentations` library | Applies same transform to image AND mask correctly |
+| Split 70/15/15 stratified | Balanced nucleus count distribution across all subsets |
+| Save split IDs to .txt files | Prevents re-splitting and data leakage in downstream notebooks |
+| Dice Loss over BCE | Class imbalance confirmed: 13.9% fg vs 86.1% bg |
+| Nearest-neighbour for mask resize | Preserves binary values — no sub-pixel artefacts |
 
-### ⚠️ Issues Encountered
+### Issues Encountered
 | Issue | Solution |
 |-------|----------|
-| Images have mixed channel types (1ch, 3ch, 4ch) | Applied `.convert("RGB")` to all images |
-| Some mask pixel values not strictly 0 or 255 | Applied threshold > 127 to binarize |
+| All 670 images are RGBA (4ch) — not mixed as initially assumed | Applied `.convert("RGB")` — drops alpha channel cleanly |
+| Masks passed all quality checks (all binary) | Applied threshold > 127 as defensive measure anyway |
 | Image sizes vary — can't batch directly | Resize all to fixed 256×256 before batching |
 | Augmentation must match image and mask exactly | Used `albumentations.Compose` with shared seed |
 
-### 📊 EDA Key Findings
+### EDA Key Findings
 | Finding | Value |
 |---------|-------|
 | Total training samples | 670 |
-| Unique image sizes | [انتي هتملي من النتائج الحقيقية] |
-| Grayscale images | [X] |
-| RGB images | [X] |
-| Average nuclei per image | [X] |
-| Min / Max nuclei | [X] / [X] |
+| Unique image sizes | 9 distinct (256×256 to 1388×1040) |
+| Most common size | 256×256 — 334 images (49.9%) |
+| Channel type | ALL RGBA (4ch) — 100% of dataset |
+| Average nuclei per image | 44.0 ± 48.0 (median = 27) |
+| Min / Max nuclei | 1 / 375 |
+| Mask foreground coverage | 13.9% ± 11.1% (class imbalance confirmed) |
+| Total masks quality-checked | 29,461 — 0 errors found |
+| High-density images (top 5%) | 35 images (≥136 nuclei) |
+| Train / Val / Test split | 469 / 100 / 101 (70/15/15) |
 
 ---
