@@ -1,26 +1,88 @@
-# Data (too large for GitHub)
+# Raw dataset 
+# Downloaded from Kaggle: kaggle competitions download -c data-science-bowl-2018
+# Instructions: data/README.md
 data/raw/
-data/processed/
+data/stage1_train/
+data/stage1_test/
 *.zip
 *.tar.gz
+*.tar
 
-# ── Model Weights
+
+# Preprocessed NumPy arrays
+# NB02 (02_Preprocessing.ipynb) saves:
+#   data/preprocessed/train_preprocessed.npz
+#   data/preprocessed/val_preprocessed.npz
+#   data/preprocessed/test_preprocessed.npz
+# These are reproducible by re-running NB02 — do not commit.
+data/preprocessed/
+*.npz
+
+
+# Model checkpoints 
+# Keep the folder itself tracked via checkpoints/.gitkeep
 checkpoints/*.pth
 checkpoints/*.pt
-*.pth
-*.pt
+checkpoints/*.ckpt
+checkpoints/*.h5
+!checkpoints/.gitkeep
 
-# Python
+
+# Figures and plots 
+# NB01 writes: reports/figures/eda_*.png
+# NB02 writes: reports/figures/prep_*.png
+# All are reproducible by re-running notebooks.
+reports/figures/
+figures/
+*.png
+*.jpg
+*.jpeg
+*.svg
+*.pdf
+
+
+# ── Python cache 
 __pycache__/
 *.pyc
 *.pyo
+*.pyd
+.Python
+
+
+# Virtual environments 
 .env
 venv/
 .venv/
+env/
+ENV/
+
 
 # Jupyter
 .ipynb_checkpoints/
+*/.ipynb_checkpoints/
 
-# OS
+
+# Credentials and API keys 
+# Never commit Kaggle tokens or W&B API keys.
+kaggle.json
+.kaggle/
+wandb/
+.wandb/
+secrets.yaml
+secrets.json
+
+
+# Training logs 
+# Runtime logs from train.py — NOT the project LOG.md (which is tracked).
+*.log
+logs/
+runs/
+
+
+# OS / editor
 .DS_Store
 Thumbs.db
+.vscode/
+.idea/
+*.swp
+*~
