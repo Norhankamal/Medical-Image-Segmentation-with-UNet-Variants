@@ -1,0 +1,8 @@
+# Model Weights
+#
+# best_model.pth is too large for GitHub (118 MB).
+# Download it from Google Drive:
+# https://drive.google.com/file/d/16AlWzF5dQ1MNCxTuLQ3O5pZXrVzrJXgS/view?usp=sharing
+#
+# Place it in this folder: checkpoints/best_model.pth
+# Required to run evaluation or inference.
