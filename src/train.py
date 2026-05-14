@@ -125,21 +125,21 @@ def train():
     6. Save training curves, predictions, and metrics
     """
 
-    # ── Config & Device ───────────────────────────────────────
+    #  Config & Device 
     cfg    = load_config()
     device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
     print(f"Device: {device}")
 
-    # ── Data ──────────────────────────────────────────────────
-    train_loader, val_loader = get_dataloaders(cfg)
+    #  Data 
+    train_loader, val_loader, test_loader = get_dataloaders(cfg)
 
-    # ── Model ─────────────────────────────────────────────────
+    #  Model 
     model = UNet(
         in_channels  = cfg["model"]["in_channels"],
         out_channels = cfg["model"]["out_channels"]
     ).to(device)
 
-    # ── Loss, Optimizer, Scheduler ────────────────────────────
+    #  Loss, Optimizer, Scheduler 
     criterion = BCEDiceLoss(
         bce_weight  = cfg["loss"]["bce_weight"],
         dice_weight = cfg["loss"]["dice_weight"]
@@ -154,7 +154,7 @@ def train():
         factor   = cfg["training"]["lr_factor"]
     )
 
-    # ── Training Loop ─────────────────────────────────────────
+    #  Training Loop 
     history = {
         "train_loss" : [],
         "val_loss"   : [],
@@ -195,7 +195,7 @@ def train():
             torch.save(model.state_dict(), cfg["paths"]["best_model"])
             print(f"         -> best model saved (Dice {best_dice:.4f})")
 
-    # ── Save Results ──────────────────────────────────────────
+    #  Save Results 
     plot_training_curves(history,
                          cfg["paths"]["figures_dir"])
     save_predictions(model, val_loader, device,
