@@ -48,7 +48,7 @@ medical-segmentation/
 │
 ├── notebooks/
 │   ├── 01_EDA_Final_v6.ipynb           ← Exploratory Data Analysis
-│   └── 02_Preprocessing_Final_v3.ipynb ← Preprocessing pipeline
+│   └── 02_Preprocessing.ipynb          ← Preprocessing pipeline
 │
 ├── data/
 │   ├── splits/                         ← train/val/test split ID files (.txt)
