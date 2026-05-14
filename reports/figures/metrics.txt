@@ -1,0 +1,9 @@
+========================================
+Final Evaluation Results
+Model    : UNet
+Dataset  : 2018 Data Science Bowl
+========================================
+
+val_dice            : 0.9180
+val_iou             : 0.8492
+val_loss            : 0.1679
