@@ -28,8 +28,6 @@ import numpy as np
 import torch
 from torch.utils.data import Dataset, DataLoader
 
-
-
 # Path to the directory containing the three .npz files produced by NB02.
 # Override this constant or pass an explicit path to get_dataloaders()
 # when running outside of Google Colab / your default Drive layout.
@@ -38,8 +36,6 @@ PREPROCESSED_DIR = "/content/drive/MyDrive/Medical_Segmentation_Data/preprocesse
 # Expected target size — must match TARGET_H / TARGET_W constants in NB02.
 TARGET_H = 256
 TARGET_W = 256
-
-
 
 # NucleiDataset
 class NucleiDataset(Dataset):
@@ -120,7 +116,6 @@ class NucleiDataset(Dataset):
         )
 
     # Required Dataset methods 
-
     def __len__(self) -> int:
         return len(self.images)
 
@@ -143,7 +138,6 @@ class NucleiDataset(Dataset):
         return image, mask
 
     # Utility 
-
     def __repr__(self) -> str:
         return (
             f"NucleiDataset("
@@ -152,7 +146,6 @@ class NucleiDataset(Dataset):
             f"mask_shape={tuple(self.masks.shape[1:])}, "
             f"transform={'yes' if self.transform else 'no'})"
         )
-
 
 
 # get_dataloaders
@@ -243,8 +236,6 @@ def get_dataloaders(
     )
 
     return train_loader, val_loader, test_loader
-
-
 
 # Quick smoke test — run this file directly to verify archives are loadable
 #   python src/dataset.py
