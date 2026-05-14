@@ -77,8 +77,7 @@ Full details and visual verification in `notebooks/02_Preprocessing.ipynb`.
 **Method:** Stratified two-step `train_test_split` (scikit-learn), seed = 42,
 stratified by nucleus-count quartile (`pd.qcut(n_nuclei, q=4)`).
 
-**Split ID files** are saved in `data/splits/` by `notebooks/01_EDA_Final_v6.ipynb` §12.  
-See `data/splits/README.md` for loading instructions and the no-re-split rule.
+**Split ID files** are saved in `data/splits/` by `notebooks/01_EDA.ipynb`.  
 
 > **Do not re-run `train_test_split`.**  
 > Loading from the fixed `*_ids.txt` files guarantees that train / val / test
