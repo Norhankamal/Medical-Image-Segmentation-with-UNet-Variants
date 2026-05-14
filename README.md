@@ -116,9 +116,6 @@ All hyperparameters are in `configs/config.yaml`.
 
 | Method | Subset | Dice ↑ | IoU ↑ |
 |--------|--------|--------|-------|
-| Otsu Thresholding (Baseline) | Test (101) | TBD | TBD |
-| UNet | Test (101) | TBD | TBD |
-| UNet++ | Test (101) | TBD | TBD |
 
 ---
 
