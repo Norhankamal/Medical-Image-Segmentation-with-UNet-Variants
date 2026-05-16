@@ -1,4 +1,5 @@
 # UNet-Based Segmentation for Small Medical Datasets
+
 > Binary segmentation of cell nuclei using UNet on the 2018 Kaggle Data Science Bowl dataset.
 
 ---
@@ -15,6 +16,7 @@
 ---
 
 ## Overview
+
 This project implements UNet-based binary segmentation of cell nuclei in microscopy images.
 We compare a classical Otsu thresholding baseline against a UNet architecture,
 evaluated using Dice coefficient and Intersection over Union (IoU).
@@ -45,7 +47,9 @@ medical-segmentation/
 ├── notebooks/
 │   ├── 01_EDA_Final_v6.ipynb           ← Exploratory Data Analysis
 │   ├── 02_Preprocessing.ipynb          ← Preprocessing pipeline
-│   └── Step4_Training.ipynb            ← UNet training and results
+
+│   ├── 03_Augmentation.ipynb           ← Data augmentation (planned Week 3)
+│   └── 04_Training_Pipeline.ipynb      ← Training pipeline
 │
 ├── data/
 │   ├── splits/                         ← train/val/test split ID files (.txt)
@@ -56,7 +60,6 @@ medical-segmentation/
 │
 └── checkpoints/
 └── .gitkeep                        ← Folder tracked, weights ignored
-
 ---
 
 ## Setup
@@ -78,6 +81,7 @@ See [data/README.md](data/README.md) for full instructions.
 ---
 
 ## Dataset
+
 **Source:** [2018 Kaggle Data Science Bowl](https://www.kaggle.com/competitions/data-science-bowl-2018/data)
 
 - 670 training samples
@@ -95,16 +99,16 @@ See [data/README.md](data/README.md) for full instructions.
 
 ### Run Otsu baseline
 ```bash
-python src/evaluate.py
+python -m src.evaluate
 ```
 
 ### Train UNet
 ```bash
-python src/train.py
+python -m src.train
 ```
 
 ### Run training notebook (Google Colab)
-Open `notebooks/Step4_Training.ipynb` in Google Colab.
+Open `notebooks/04_Training_Pipeline.ipynb` in Google Colab.
 Mount Google Drive and run all cells.
 All hyperparameters are in `configs/config.yaml`.
 
@@ -120,5 +124,6 @@ All hyperparameters are in `configs/config.yaml`.
 ---
 
 ## References
-1. Ronneberger et al., "U-Net: Convolutional Networks for Biomedical Image Segmentation," MICCAI 2015. https://arxiv.org/abs/1505.04597
+
+1. Ronneberger et al., "U-Net: Convolutional Networks for Biomedical Image Segmentation," MICCAI 2015. https://arxiv.org/abs/1505.04597  
 2. Zhou et al., "UNet++: A Nested U-Net Architecture for Medical Image Segmentation," DLMIA 2018. https://arxiv.org/abs/1807.10165
