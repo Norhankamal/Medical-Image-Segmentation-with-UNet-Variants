@@ -1,4 +1,4 @@
-# Raw dataset 
+# Raw dataset
 # Downloaded from Kaggle: kaggle competitions download -c data-science-bowl-2018
 # Instructions: data/README.md
 data/raw/
@@ -8,18 +8,16 @@ data/stage1_test/
 *.tar.gz
 *.tar
 
-
 # Preprocessed NumPy arrays
 # NB02 (02_Preprocessing.ipynb) saves:
-#   data/preprocessed/train_preprocessed.npz
-#   data/preprocessed/val_preprocessed.npz
-#   data/preprocessed/test_preprocessed.npz
+#   data/preprocessed/train_data.npz
+#   data/preprocessed/val_data.npz
+#   data/preprocessed/test_data.npz
 # These are reproducible by re-running NB02 — do not commit.
 data/preprocessed/
 *.npz
 
-
-# Model checkpoints 
+# Model checkpoints
 # Keep the folder itself tracked via checkpoints/.gitkeep
 checkpoints/*.pth
 checkpoints/*.pt
@@ -27,42 +25,31 @@ checkpoints/*.ckpt
 checkpoints/*.h5
 !checkpoints/.gitkeep
 
+# Figures and plots
+# Only ignore EDA and preprocessing figures — reproducible by re-running notebooks
+# Training results (training_curves.png, predictions.png, metrics.txt) are tracked
+reports/figures/eda_*.png
+reports/figures/prep_*.png
 
-# Figures and plots 
-# NB01 writes: reports/figures/eda_*.png
-# NB02 writes: reports/figures/prep_*.png
-# All are reproducible by re-running notebooks.
-reports/figures/
-figures/
-*.png
-*.jpg
-*.jpeg
-*.svg
-*.pdf
-
-
-# ── Python cache 
+# Python cache
 __pycache__/
 *.pyc
 *.pyo
 *.pyd
 .Python
 
-
-# Virtual environments 
+# Virtual environments
 .env
 venv/
 .venv/
 env/
 ENV/
 
-
 # Jupyter
 .ipynb_checkpoints/
 */.ipynb_checkpoints/
 
-
-# Credentials and API keys 
+# Credentials and API keys
 # Never commit Kaggle tokens or W&B API keys.
 kaggle.json
 .kaggle/
@@ -71,13 +58,11 @@ wandb/
 secrets.yaml
 secrets.json
 
-
-# Training logs 
+# Training logs
 # Runtime logs from train.py — NOT the project LOG.md (which is tracked).
 *.log
 logs/
 runs/
-
 
 # OS / editor
 .DS_Store
