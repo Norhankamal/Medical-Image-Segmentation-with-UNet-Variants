@@ -6,7 +6,9 @@ data:
   preprocessed_dir : /content/drive/MyDrive/Medical_Segmentation_Data/preprocessed
   img_size    : 256
   num_workers : 2
-  val_split   : 0.2
+  train_split : 0.70
+  val_split   : 0.15
+  test_split  : 0.15
   seed        : 42
 
 # Model Settings
