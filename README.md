@@ -28,6 +28,7 @@ evaluated using Dice coefficient and Intersection over Union (IoU).
 ---
 
 ## Project Structure
+```
 medical-segmentation/
 ├── README.md
 ├── LOG.md
@@ -60,8 +61,7 @@ medical-segmentation/
 │
 └── checkpoints/
 └── .gitkeep                        ← Folder tracked, weights ignored
----
-
+```
 ## Setup
 
 ### 1. Clone the repository
