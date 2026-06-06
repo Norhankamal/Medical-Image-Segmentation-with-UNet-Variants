@@ -49,7 +49,7 @@ medical-segmentation/
 │   ├── 01_EDA_Final_v6.ipynb           ← Exploratory Data Analysis
 │   ├── 02_Preprocessing.ipynb          ← Preprocessing pipeline
 
-│   ├── 03_Augmentation.ipynb           ← Data augmentation (planned Week 3)
+│   ├── 03_Augmentation.ipynb           ← Data augmentation — 469 → 2,814 training samples
 │   └── 04_Training_Pipeline.ipynb      ← Training pipeline
 │
 ├── data/
