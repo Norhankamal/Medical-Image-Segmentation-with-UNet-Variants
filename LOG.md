@@ -246,3 +246,33 @@
 |-------|----------|
 | LOG.md had broken encoding (UTF-8 corruption) | Rewrote file directly on GitHub with correct encoding |
 | README referenced UNet++ which is not implemented | Corrected to reflect actual UNet-only implementation |
+
+## Day 5 — June 6, 2026 | Data Augmentation
+
+**Contributor: Student A**
+
+### Completed
+- Implemented full augmentation pipeline in `notebooks/03_Augmentation.ipynb`
+- Defined 12-transform Albumentations pipeline covering geometric, photometric, and regularisation augmentations
+- Geometric transforms (applied to image + mask): HorizontalFlip, VerticalFlip, RandomRotate90, ShiftScaleRotate, ElasticTransform, GridDistortion
+- Photometric transforms (image only): RandomBrightnessContrast, RandomGamma, GaussNoise, GaussianBlur, CLAHE
+- Regularisation: CoarseDropout with mask_fill_value=0
+- Excluded colour jitter and channel shuffle — staining colour carries diagnostic meaning in fluorescence microscopy
+- Augmented training set: 469 → 2,814 samples (N_AUG=5 copies + originals)
+- Saved augmented arrays to `data/train_aug.npz`
+
+### Key Decisions
+| Decision | Reason |
+|----------|--------|
+| Albumentations over torchvision transforms | Native mask propagation via `additional_targets` — no manual sync needed |
+| N_AUG=5 (×6 total) | Balances dataset size vs training time for UNet from scratch on 469 samples |
+| Geometric transforms applied to both image and mask | Pixel-level alignment must be preserved for segmentation |
+| Colour jitter excluded | Staining colour carries diagnostic meaning in fluorescence and brightfield microscopy |
+| CoarseDropout mask_fill_value=0 | Bounded label noise ≤0.8% per sample; accepted cost for occlusion-robustness |
+| Post-aug mask binarisation ≥0.5 | ElasticTransform/GridDistortion bilinear interpolation introduces sub-integer values |
+
+### Issues Encountered
+| Issue | Solution |
+|-------|----------|
+| A.CLAHE raises TypeError on float32 input | Wrapped in A.Lambda with custom float32↔uint8 converter |
+| Notebook rendered as "Invalid Notebook" on GitHub | Fixed missing `state` key in `metadata.widgets` and set `nbformat_minor=4` |
