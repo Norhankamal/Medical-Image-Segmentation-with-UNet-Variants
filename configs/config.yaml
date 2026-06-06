@@ -44,3 +44,16 @@ paths:
 # Evaluation
 evaluation:
   threshold : 0.5
+
+# Augmentation Settings
+# Applied to training set only — val/test are never augmented
+# Pipeline defined in notebooks/03_Augmentation.ipynb
+augmentation:
+  enabled        : true
+  n_aug          : 5          # augmented copies per sample → 469 × 6 = 2,814 total
+  aug_data_path  : /content/drive/MyDrive/Medical_Segmentation_Data/preprocessed/train_aug.npz
+  elastic_alpha  : 40         # scales Gaussian-smoothed displacement field
+  elastic_sigma  : 7.0        # deformation smoothness
+  coarse_dropout_holes  : 8
+  coarse_dropout_height : 16
+  coarse_dropout_width  : 16  
