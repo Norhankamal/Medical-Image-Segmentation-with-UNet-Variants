@@ -21,9 +21,9 @@ model:
 
 # Training Settings
 training:
-  epochs      : 50
+  epochs      : 30
   batch_size  : 8
-  lr          : 0.0001
+  lr          : 0.001     # HIGH learning rate
   lr_patience : 5
   lr_factor   : 0.5
 
