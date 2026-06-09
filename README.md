@@ -48,7 +48,6 @@ medical-segmentation/
 ├── notebooks/
 │   ├── 01_EDA_Final_v6.ipynb           ← Exploratory Data Analysis
 │   ├── 02_Preprocessing.ipynb          ← Preprocessing pipeline
-
 │   ├── 03_Augmentation.ipynb           ← Data augmentation — 469 → 2,814 training samples
 │   └── 04_Training_Pipeline.ipynb      ← Training pipeline
 │
@@ -116,10 +115,11 @@ All hyperparameters are in `configs/config.yaml`.
 
 ## Results
 
-| Method            | Subset | Dice ↑ | IoU ↑  |
-|-------------------|--------|--------|--------|
-| Otsu Thresholding | Val    | 0.7325 | 0.6685 |
-| UNet (ours)       | Val    | 0.9195 | 0.8560 |
+| Method            | Subset      | Dice ↑ | IoU ↑  |
+|-------------------|-------------|--------|--------|
+| Otsu Thresholding | Val (100)   | 0.7325 | 0.6685 |
+| UNet              | Val (100)   | 0.9195 | 0.8560 |
+| UNet              | Test (101)  | 0.9235 | 0.8591 |
 
 ---
 
