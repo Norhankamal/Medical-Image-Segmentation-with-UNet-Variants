@@ -276,3 +276,77 @@
 |-------|----------|
 | A.CLAHE raises TypeError on float32 input | Wrapped in A.Lambda with custom float32↔uint8 converter |
 | Notebook rendered as "Invalid Notebook" on GitHub | Fixed missing `state` key in `metadata.widgets` and set `nbformat_minor=4` |
+---
+
+## Day 6 — June 8, 2026 | Ablation Experiments Setup
+
+**Contributor: Student B**
+
+### Completed
+
+- Added experiments section to `04_Training_Pipeline.ipynb`
+- Set up shared experiment infrastructure (imports, EXPERIMENT_EPOCHS=30, shared dataloaders)
+- Ran Experiment 1 — Learning Rate Comparison (lr: 0.001, 0.0001, 0.00001)
+- Ran Experiment 2 — Loss Function Comparison (BCE only vs BCE + Dice)
+
+### Experiment Results (Day 6)
+
+| Experiment | Settings Tested | Best Setting | Best Dice |
+|---|---|---|---|
+| 1 — Learning Rate | 0.001, 0.0001, 0.00001 | lr=0.0001 | 0.9123 |
+| 2 — Loss Function | BCE only, BCE + Dice | BCE + Dice | 0.9134 |
+
+### Key Decisions
+
+| Decision | Reason |
+|---|---|
+| 30 epochs per experiment | Enough to compare settings without wasting GPU time |
+| One variable changed per experiment | Clean ablation — isolates effect of each decision |
+
+### Issues Encountered
+
+| Issue | Solution |
+|---|---|
+| Colab session ended before all experiments completed | Re-ran the full notebook from the beginning in a new session |
+
+---
+
+## Day 7 — June 9, 2026 | Augmentation Experiment & Final Test Evaluation
+
+**Contributor: Student B**
+
+### Completed
+
+- Ran Experiment 3 — Augmentation Comparison (without vs with augmentation from NB03)
+- Loaded Student A's augmented data from Drive: 469 → 2,814 training samples
+- Evaluated final model on held-out test set (101 images): Dice 0.9235, IoU 0.8591
+- Saved all experiment charts to `reports/figures/`
+- Updated `04_Training_Pipeline.ipynb` with full experiments section and final evaluation
+- Updated `README.md` results table with final test numbers
+- Updated `LOG.md` with all Student B entries
+
+### Experiment Results (Day 7)
+
+| Experiment | Settings Tested | Best Setting | Best Dice |
+|---|---|---|---|
+| 3 — Augmentation | Without, With (2,814 samples) | With augmentation | 0.9185 |
+
+### Final Test Set Results
+
+| Metric | Value |
+|---|---|
+| Test Dice | 0.9235 |
+| Test IoU | 0.8591 |
+
+### Key Decisions
+
+| Decision | Reason |
+|---|---|
+| Augmented data from Student A's NB03 | 469 → 2,814 samples improves generalization |
+| Final evaluation on held-out test set | Unbiased measure of model performance |
+
+### Issues Encountered
+
+| Issue | Solution |
+|---|---|
+| Some output files not persisted after session restart | Re-ran the notebook and re-uploaded results to GitHub |
