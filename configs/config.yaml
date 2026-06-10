@@ -51,7 +51,7 @@ evaluation:
 augmentation:
   enabled        : true
   n_aug          : 5          # augmented copies per sample → 469 × 6 = 2,814 total
-  aug_data_path  : /content/drive/MyDrive/Medical_Segmentation_Data/preprocessed/train_aug.npz
+  aug_data_path  : /content/drive/MyDrive/Medical_Segmentation_Data/preprocessed/train_preprocessed.npz
   elastic_alpha  : 40         # scales Gaussian-smoothed displacement field
   elastic_sigma  : 7.0        # deformation smoothness
   coarse_dropout_holes  : 8
