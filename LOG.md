@@ -349,6 +349,62 @@
 
 | Issue | Solution |
 |---|---|
+
+## Day 8 — June 10, 2026 | Test Set Evaluation & Final Report Assembly
+
+**Contributor: Student C**
+
+### Completed
+
+#### Test Set Evaluation
+- Loaded `test_preprocessed.npz` from Drive (101 images, preprocessed by Student A using same pipeline as validation split)
+- Ran Otsu baseline on test set (101 images) — same `otsu_predict()` function, no parameter changes:
+  - Dice: 0.7514, IoU: 0.6856, Precision: 0.7941, Recall: 0.7326
+- Ran UNet inference on test set (101 images, THRESH=0.50):
+  - Dice: 0.9094, IoU: 0.8430, Precision: 0.9181, Recall: 0.9117
+- Produced test set bar chart — saved to `test_set_comparison.png`
+- Saved final test results to `final_results_test.csv`
+
+#### Final Test Set Results
+
+| Method | Subset | Dice ↑ | IoU ↑ | Precision ↑ | Recall ↑ |
+|:---|:---|---:|---:|---:|---:|
+| Otsu Thresholding | Test | 0.7514 | 0.6856 | 0.7941 | 0.7326 |
+| UNet (ours) | Test | 0.9094 | 0.8430 | 0.9181 | 0.9117 |
+
+#### Report Writing
+- Wrote Section 5 — Results & Analysis:
+  - Quantitative results table with test set numbers
+  - Analysis of why UNet outperforms Otsu (spatial context vs intensity-only)
+  - Experiment findings summary (LR, loss function, augmentation)
+  - Failure case analysis: dense nucleus clusters, sparse nuclei, out-of-distribution staining
+- Wrote Section 6 — Conclusion:
+  - Summary of achieved results
+  - Limitations: instance-agnostic metrics, single dataset, threshold on val set
+  - Future work: pre-trained backbone, watershed post-processing, instance segmentation
+- Assembled full IEEE-format final report from all three students' sections
+- Updated `notebooks/05_Evaluation_Baseline.ipynb` with all corrections and final test set cell
+- Pushed notebook to GitHub
+
+### Key Decisions
+
+| Decision | Reason |
+|---|---|
+| Used Student C's test set numbers (0.9094) as official final results | Student B evaluated on full dataset; Student C's evaluation on isolated 101-image test set is the correct unbiased final number |
+| THRESH=0.50 applied unchanged to test set | Threshold selected on validation set — applying it to test set preserves evaluation integrity |
+| Otsu run with no parameter changes on test set | Same function, same parameters as validation run — baseline integrity preserved |
+
+### Issues Encountered
+
+| Issue | Solution |
+|---|---|
+| Student B's test numbers (Dice 0.9235) differed from Student C's (Dice 0.9094) | Student B evaluated on full dataset; Student C's isolated test set evaluation is the correct final number — clarified with team |
+| Markdown table in Section 9 not rendering correctly in Colab | Fixed pipe formatting — added `|` delimiters to all rows |
+| Duplicate test set evaluation cell at end of notebook | Removed redundant cell; Section 13 already contains the complete test set evaluation |
+
+
+
+
 | Some output files not persisted after session restart | Re-ran the notebook and re-uploaded results to GitHub |
 
 
