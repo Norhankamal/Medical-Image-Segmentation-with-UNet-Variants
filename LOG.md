@@ -324,6 +324,19 @@
 - Updated `README.md` results table with final test numbers
 - Updated `LOG.md` with all Student B entries
 
+## Day 7 — June 9, 2026 | Augmentation Experiment & Final Test Evaluation
+
+**Contributor: Student B**
+
+### Completed
+- Ran Experiment 3 — Augmentation Comparison (without vs with augmentation from NB03)
+- Loaded Student A's augmented data from Drive: 469 → 2,814 training samples
+- Evaluated final model on held-out test set (101 images): Dice 0.9235, IoU 0.8591
+- Saved all experiment charts to `reports/figures/`
+- Updated `04_Training_Pipeline.ipynb` with full experiments section and final evaluation
+- Updated `README.md` results table with final test numbers
+- Updated `LOG.md` with all Student B entries
+
 ### Experiment Results (Day 7)
 
 | Experiment | Settings Tested | Best Setting | Best Dice |
@@ -350,13 +363,11 @@
 |---|---|
 | Some output files not persisted after session restart | Re-ran the notebook and re-uploaded results to GitHub |
 
+---
 
+**Contributor: Student C**
 
-## Day 7 — June 9, 2026 | Augmentation Experiment & Final Test Evaluation + Evaluation Notebook Setup
-
-### Student C — Evaluation Notebook Setup & Validation Set Results
-
-#### Completed
+### Completed
 
 - Received handoff from Student B: UNet checkpoint (`best_model.pth`), val Dice 0.9180, all figures in `reports/figures/`
 - Created `notebooks/05_Evaluation_Baseline.ipynb` — Student C's full evaluation notebook
@@ -372,7 +383,7 @@
 - Produced grouped bar chart comparing all 4 metrics — saved to `unet_vs_otsu_comparison.png`
 - Saved validation results to `final_results.csv`
 
-#### Key Decisions
+### Key Decisions
 
 | Decision | Reason |
 |---|---|
@@ -380,7 +391,7 @@
 | Otsu run per-image with no parameter tuning | Preserves baseline integrity — no fitting to data |
 | Batch size 1 for UNet inference | Keeps memory predictable; no performance impact on evaluation |
 
-#### Issues Encountered
+### Issues Encountered
 
 | Issue | Solution |
 |---|---|
@@ -439,11 +450,3 @@
 | Student B's test numbers (Dice 0.9235) differed from Student C's (Dice 0.9094) | Student B evaluated on full dataset; Student C's isolated test set evaluation is the correct final number — clarified with team |
 | Markdown table in Section 9 not rendering correctly in Colab | Fixed pipe formatting — added `|` delimiters to all rows |
 | Duplicate test set evaluation cell at end of notebook | Removed redundant cell; Section 13 already contains the complete test set evaluation |
-
-
-
-
-| Some output files not persisted after session restart | Re-ran the notebook and re-uploaded results to GitHub |
-
-
-
