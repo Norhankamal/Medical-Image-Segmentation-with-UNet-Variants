@@ -310,14 +310,11 @@
 | Colab session ended before all experiments completed | Re-ran the full notebook from the beginning in a new session |
 
 ---
+## Day 7 — June 9, 2026 | Augmentation Experiment & Final Test Evaluation
 
-## Day 7 — June 9, 2026 | Augmentation Experiment & Final Test Evaluation + Evaluation Notebook Setup
+**Contributor: Student B**
 
----
-
-### Student B — Augmentation Experiment & Final Test Evaluation
-
-#### Completed
+### Completed
 
 - Ran Experiment 3 — Augmentation Comparison (without vs with augmentation from NB03)
 - Loaded Student A's augmented data from Drive: 469 → 2,814 training samples
@@ -327,26 +324,35 @@
 - Updated `README.md` results table with final test numbers
 - Updated `LOG.md` with all Student B entries
 
-#### Experiment Results (Day 7)
+### Experiment Results (Day 7)
 
 | Experiment | Settings Tested | Best Setting | Best Dice |
 |---|---|---|---|
 | 3 — Augmentation | Without, With (2,814 samples) | With augmentation | 0.9185 |
 
-#### Key Decisions
+### Final Test Set Results
+
+| Metric | Value |
+|---|---|
+| Test Dice | 0.9235 |
+| Test IoU | 0.8591 |
+
+### Key Decisions
 
 | Decision | Reason |
 |---|---|
 | Augmented data from Student A's NB03 | 469 → 2,814 samples improves generalization |
 | Final evaluation on held-out test set | Unbiased measure of model performance |
 
-#### Issues Encountered
+### Issues Encountered
 
 | Issue | Solution |
 |---|---|
 | Some output files not persisted after session restart | Re-ran the notebook and re-uploaded results to GitHub |
 
----
+
+
+## Day 7 — June 9, 2026 | Augmentation Experiment & Final Test Evaluation + Evaluation Notebook Setup
 
 ### Student C — Evaluation Notebook Setup & Validation Set Results
 
