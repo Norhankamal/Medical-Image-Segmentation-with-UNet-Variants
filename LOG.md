@@ -311,11 +311,13 @@
 
 ---
 
-## Day 7 — June 9, 2026 | Augmentation Experiment & Final Test Evaluation
+## Day 7 — June 9, 2026 | Augmentation Experiment & Final Test Evaluation + Evaluation Notebook Setup
 
-**Contributor: Student B**
+---
 
-### Completed
+### Student B — Augmentation Experiment & Final Test Evaluation
+
+#### Completed
 
 - Ran Experiment 3 — Augmentation Comparison (without vs with augmentation from NB03)
 - Loaded Student A's augmented data from Drive: 469 → 2,814 training samples
@@ -325,30 +327,60 @@
 - Updated `README.md` results table with final test numbers
 - Updated `LOG.md` with all Student B entries
 
-### Experiment Results (Day 7)
+#### Experiment Results (Day 7)
 
 | Experiment | Settings Tested | Best Setting | Best Dice |
 |---|---|---|---|
 | 3 — Augmentation | Without, With (2,814 samples) | With augmentation | 0.9185 |
 
-### Final Test Set Results
-
-| Metric | Value |
-|---|---|
-| Test Dice | 0.9235 |
-| Test IoU | 0.8591 |
-
-### Key Decisions
+#### Key Decisions
 
 | Decision | Reason |
 |---|---|
 | Augmented data from Student A's NB03 | 469 → 2,814 samples improves generalization |
 | Final evaluation on held-out test set | Unbiased measure of model performance |
 
-### Issues Encountered
+#### Issues Encountered
 
 | Issue | Solution |
 |---|---|
+| Some output files not persisted after session restart | Re-ran the notebook and re-uploaded results to GitHub |
+
+---
+
+### Student C — Evaluation Notebook Setup & Validation Set Results
+
+#### Completed
+
+- Received handoff from Student B: UNet checkpoint (`best_model.pth`), val Dice 0.9180, all figures in `reports/figures/`
+- Created `notebooks/05_Evaluation_Baseline.ipynb` — Student C's full evaluation notebook
+- Implemented metric functions inline: `dice_score()`, `iou_score()`, `precision_recall()`
+- Implemented `otsu_predict()` — per-image Otsu thresholding via OpenCV `THRESH_OTSU`; converts CHW float → HWC uint8 → grayscale → binary mask
+- Ran Otsu baseline on validation set (100 images):
+  - Dice: 0.7325, IoU: 0.6685, Precision: 0.7750, Recall: 0.7219
+- Downloaded `best_model.pth` from Drive, loaded UNet on GPU
+- Ran threshold sweep (0.50, 0.60, 0.62, 0.65, 0.70) on 10-image subset — confirmed THRESH=0.50 gives best Dice (0.9091)
+- Ran UNet inference on full validation set (100 images, THRESH=0.50):
+  - Dice: 0.9195, IoU: 0.8560, Precision: 0.9284, Recall: 0.9180
+- Produced qualitative comparison grid (4×4): Image | GT | Otsu | UNet — saved to `qualitative_comparison.png`
+- Produced grouped bar chart comparing all 4 metrics — saved to `unet_vs_otsu_comparison.png`
+- Saved validation results to `final_results.csv`
+
+#### Key Decisions
+
+| Decision | Reason |
+|---|---|
+| THRESH=0.50 for UNet binarisation | Confirmed best by threshold sweep on validation subset |
+| Otsu run per-image with no parameter tuning | Preserves baseline integrity — no fitting to data |
+| Batch size 1 for UNet inference | Keeps memory predictable; no performance impact on evaluation |
+
+#### Issues Encountered
+
+| Issue | Solution |
+|---|---|
+| None on this day | — |
+
+---
 
 ## Day 8 — June 10, 2026 | Test Set Evaluation & Final Report Assembly
 
