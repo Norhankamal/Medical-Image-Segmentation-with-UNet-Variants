@@ -315,20 +315,6 @@
 **Contributor: Student B**
 
 ### Completed
-
-- Ran Experiment 3 — Augmentation Comparison (without vs with augmentation from NB03)
-- Loaded Student A's augmented data from Drive: 469 → 2,814 training samples
-- Evaluated final model on held-out test set (101 images): Dice 0.9235, IoU 0.8591
-- Saved all experiment charts to `reports/figures/`
-- Updated `04_Training_Pipeline.ipynb` with full experiments section and final evaluation
-- Updated `README.md` results table with final test numbers
-- Updated `LOG.md` with all Student B entries
-
-## Day 7 — June 9, 2026 | Augmentation Experiment & Final Test Evaluation
-
-**Contributor: Student B**
-
-### Completed
 - Ran Experiment 3 — Augmentation Comparison (without vs with augmentation from NB03)
 - Loaded Student A's augmented data from Drive: 469 → 2,814 training samples
 - Evaluated final model on held-out test set (101 images): Dice 0.9235, IoU 0.8591
@@ -379,6 +365,8 @@
 - Ran threshold sweep (0.50, 0.60, 0.62, 0.65, 0.70) on 10-image subset — confirmed THRESH=0.50 gives best Dice (0.9091)
 - Ran UNet inference on full validation set (100 images, THRESH=0.50):
   - Dice: 0.9195, IoU: 0.8560, Precision: 0.9284, Recall: 0.9180
+- Produced Otsu sample visualisation (3×4 grid) — saved to `otsu_samples.png`
+- Produced Otsu score distributions (Dice & IoU histograms) — saved to `otsu_distributions.png`
 - Produced qualitative comparison grid (4×4): Image | GT | Otsu | UNet — saved to `qualitative_comparison.png`
 - Produced grouped bar chart comparing all 4 metrics — saved to `unet_vs_otsu_comparison.png`
 - Saved validation results to `final_results.csv`
@@ -397,6 +385,7 @@
 |---|---|
 | None on this day | — |
 
+
 ---
 
 ## Day 8 — June 10, 2026 | Test Set Evaluation & Final Report Assembly
@@ -411,7 +400,7 @@
   - Dice: 0.7514, IoU: 0.6856, Precision: 0.7941, Recall: 0.7326
 - Ran UNet inference on test set (101 images, THRESH=0.50):
   - Dice: 0.9094, IoU: 0.8430, Precision: 0.9181, Recall: 0.9117
-- Produced test set bar chart — saved to `test_set_comparison.png`
+- Produced test set bar chart with per-bar value annotations — saved to `test_set_comparison.png`
 - Saved final test results to `final_results_test.csv`
 
 #### Final Test Set Results
@@ -422,18 +411,21 @@
 | UNet (ours) | Test | 0.9094 | 0.8430 | 0.9181 | 0.9117 |
 
 #### Report Writing
-- Wrote Section 5 — Results & Analysis:
+- Wrote Section 15 — Results & Analysis:
   - Quantitative results table with test set numbers
   - Analysis of why UNet outperforms Otsu (spatial context vs intensity-only)
-  - Experiment findings summary (LR, loss function, augmentation)
+  - Experiment findings summary (LR, loss function, augmentation) — placeholders for Student B's ablation numbers
   - Failure case analysis: dense nucleus clusters, sparse nuclei, out-of-distribution staining
-- Wrote Section 6 — Conclusion:
+- Wrote Section 16 — Conclusion:
   - Summary of achieved results
   - Limitations: instance-agnostic metrics, single dataset, threshold on val set
   - Future work: pre-trained backbone, watershed post-processing, instance segmentation
-- Assembled full IEEE-format final report from all three students' sections
-- Updated `notebooks/05_Evaluation_Baseline.ipynb` with all corrections and final test set cell
-- Pushed notebook to GitHub
+- Added Section 15.5 — GenAI disclosure table (Claude used for concept clarification, grammar, and one debugging session)
+- Updated notebook header table with confirmed val and test Dice numbers
+- Removed `_update after re-run_` placeholders throughout notebook
+- Removed duplicate test set evaluation cell (Section 13 is the canonical evaluation)
+- Fixed markdown table pipe formatting in Section 9
+- Pushed final `05_Evaluation_and_Baseline.ipynb` to GitHub
 
 ### Key Decisions
 
@@ -442,11 +434,15 @@
 | Used Student C's test set numbers (0.9094) as official final results | Student B evaluated on full dataset; Student C's evaluation on isolated 101-image test set is the correct unbiased final number |
 | THRESH=0.50 applied unchanged to test set | Threshold selected on validation set — applying it to test set preserves evaluation integrity |
 | Otsu run with no parameter changes on test set | Same function, same parameters as validation run — baseline integrity preserved |
+| Section numbering follows notebook sections (15, 16) not report sections (5, 6) | Avoids confusion between report section numbers and notebook section numbers |
 
 ### Issues Encountered
 
 | Issue | Solution |
 |---|---|
 | Student B's test numbers (Dice 0.9235) differed from Student C's (Dice 0.9094) | Student B evaluated on full dataset; Student C's isolated test set evaluation is the correct final number — clarified with team |
-| Markdown table in Section 9 not rendering correctly in Colab | Fixed pipe formatting — added `|` delimiters to all rows |
+| Markdown table in Section 9 not rendering correctly in Colab | Fixed pipe formatting — added `\|` delimiters to all rows |
 | Duplicate test set evaluation cell at end of notebook | Removed redundant cell; Section 13 already contains the complete test set evaluation |
+| Header table had `_update after re-run_` placeholders | Filled with confirmed numbers: UNet val Dice 0.9195, UNet test Dice 0.9094 |
+
+
