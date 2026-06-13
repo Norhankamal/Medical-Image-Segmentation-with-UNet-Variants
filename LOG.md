@@ -293,8 +293,8 @@
 
 | Experiment | Settings Tested | Best Setting | Best Dice |
 |---|---|---|---|
-| 1 — Learning Rate | 0.001, 0.0001, 0.00001 | lr=0.0001 | 0.9123 |
-| 2 — Loss Function | BCE only, BCE + Dice | BCE + Dice | 0.9134 |
+| 1 — Learning Rate | 0.001, 0.0001, 0.00001 | lr=0.0001 | 0.9158 |
+| 2 — Loss Function | BCE only, BCE + Dice | BCE + Dice | 0.9154 |
 
 ### Key Decisions
 
@@ -327,14 +327,14 @@
 
 | Experiment | Settings Tested | Best Setting | Best Dice |
 |---|---|---|---|
-| 3 — Augmentation | Without, With (2,814 samples) | With augmentation | 0.9185 |
+| 3 — Augmentation | Without, With (2,814 samples) | With augmentation | 0.9178 |
 
 ### Final Test Set Results
 
 | Metric | Value |
 |---|---|
-| Test Dice | 0.9235 |
-| Test IoU | 0.8591 |
+| Test Dice | 0.9259 |
+| Test IoU  | 0.8626 |
 
 ### Key Decisions
 
@@ -364,7 +364,7 @@
 - Downloaded `best_model.pth` from Drive, loaded UNet on GPU
 - Ran threshold sweep (0.50, 0.60, 0.62, 0.65, 0.70) on 10-image subset — confirmed THRESH=0.50 gives best Dice (0.9091)
 - Ran UNet inference on full validation set (100 images, THRESH=0.50):
-  - Dice: 0.9195, IoU: 0.8560, Precision: 0.9284, Recall: 0.9180
+  - Dice: 0.9232, IoU: 0.8610, Precision: 0.9202, Recall: 0.9322
 - Produced Otsu sample visualisation (3×4 grid) — saved to `otsu_samples.png`
 - Produced Otsu score distributions (Dice & IoU histograms) — saved to `otsu_distributions.png`
 - Produced qualitative comparison grid (4×4): Image | GT | Otsu | UNet — saved to `qualitative_comparison.png`
@@ -399,7 +399,7 @@
 - Ran Otsu baseline on test set (101 images) — same `otsu_predict()` function, no parameter changes:
   - Dice: 0.7514, IoU: 0.6856, Precision: 0.7941, Recall: 0.7326
 - Ran UNet inference on test set (101 images, THRESH=0.50):
-  - Dice: 0.9094, IoU: 0.8430, Precision: 0.9181, Recall: 0.9117
+  - Dice: 0.9134, IoU: 0.8465, Precision: 0.9104, Recall: 0.9252
 - Produced test set bar chart with per-bar value annotations — saved to `test_set_comparison.png`
 - Saved final test results to `final_results_test.csv`
 
@@ -408,7 +408,7 @@
 | Method | Subset | Dice ↑ | IoU ↑ | Precision ↑ | Recall ↑ |
 |:---|:---|---:|---:|---:|---:|
 | Otsu Thresholding | Test | 0.7514 | 0.6856 | 0.7941 | 0.7326 |
-| UNet (ours) | Test | 0.9094 | 0.8430 | 0.9181 | 0.9117 |
+| UNet (ours) | Test | 0.9134 | 0.8465 | 0.9104 | 0.9252 |
 
 #### Report Writing
 - Wrote Section 15 — Results & Analysis:
