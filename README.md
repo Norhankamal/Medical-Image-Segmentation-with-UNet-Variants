@@ -118,8 +118,8 @@ All hyperparameters are in `configs/config.yaml`.
 | Method            | Subset      | Dice ↑ | IoU ↑  |
 |-------------------|-------------|--------|--------|
 | Otsu Thresholding | Val (100)   | 0.7325 | 0.6685 |
-| UNet              | Val (100)   | 0.9195 | 0.8560 |
-| UNet              | Test (101)  | 0.9235 | 0.8591 |
+| UNet              | Val (100)   | 0.9232 | 0.8610 |
+| UNet              | Test (101)  | 0.9134 | 0.8465 |
 
 ---
 
