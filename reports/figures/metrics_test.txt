@@ -5,5 +5,5 @@ Dataset : 2018 Data Science Bowl
 Subset  : Test (101 images)
 ========================================
 
-test_dice : 0.9235
-test_iou  : 0.8591
+test_dice : 0.9259
+test_iou  : 0.8626
